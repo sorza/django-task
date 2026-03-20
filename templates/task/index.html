@@ -15,11 +15,11 @@
             <form class="login-form" method="post" action="{% url 'tasks' %}">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="usuario" class="form-label">Email address</label>
+                    <label for="usuario" class="form-label">Usuario</label>
                     <input type="text" class="form-control" id="usuario">                
                 </div>
                 <div class="mb-3">
-                    <label for="senha" class="form-label">Password</label>
+                    <label for="senha" class="form-label">Senha</label>
                     <input type="password" class="form-control" id="senha">
                 </div>
                 <div class="mb-3 form-check">
