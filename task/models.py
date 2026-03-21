@@ -5,3 +5,6 @@ class Tarefa(models.Model):
     descricao = models.CharField(max_length=500, null=False, blank=False)
     data = models.DateField()
     status = models.BooleanField()
+
+    def __str__(self):
+        return self.titulo
