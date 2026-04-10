@@ -18,3 +18,23 @@ def create_task(request):
         return redirect('tasks')
     
     return render(request, 'task/create_task.html')
+
+def delete_task(request, id):
+    tarefa = Tarefa.objects.get(id=id)
+    if request.method == 'POST':
+        tarefa.delete()
+        return redirect('tasks')
+    
+    return render(request, 'task/delete_task.html', {'task': tarefa})
+
+def update_task(request, id):
+    tarefa = Tarefa.objects.get(id=id)
+    if request.method == 'POST':
+        tarefa.titulo = request.POST.get('titulo')
+        tarefa.descricao = request.POST.get('descricao')
+        tarefa.data = request.POST.get('data')
+        tarefa.status = 'status' in request.POST
+        tarefa.save()
+        return redirect('tasks')
+    
+    return render(request, 'task/update_task.html', {'task': tarefa})

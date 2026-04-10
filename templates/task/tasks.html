@@ -36,8 +36,8 @@
                     <td>{{ tarefa.data }}</td>
                     <td>{% if tarefa.status %} Concluído {% else %} Pendente {% endif %}</td>
                     <td>
-                        <a class="btn btn-primary">Editar</a>
-                        <a class="btn btn-danger">Excluir</a>
+                        <a class="btn btn-primary" href="{% url 'edit' tarefa.id %}">Editar</a>
+                        <a class="btn btn-danger" href="{% url 'delete' tarefa.id %}">Excluir</a>
                     <td>
                 </tr>
             {% endfor %}

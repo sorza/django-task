@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Editar Tarefa</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h1 class="">Editar Tarefa</h1>
+            <p class="">Editar a tarefa "{{ task.titulo }}"</p>
+
+            <form method="post" class="">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Título</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" value="{{ task.titulo }}">
+                </div>
+                <div class="mb-3">
+                    <label for="descricao" class="form-label">Descrição</label>
+                    <textarea class="form-control" id="descricao" name="descricao">{{ task.descricao }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="data" class="form-label">Data de Vencimento</label>
+                    <input type="date" class="form-control" id="data" name="data" value="{{ task.data }}">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="status" name="status" {% if task.status %}checked{% endif %}>
+                    <label class="form-check-label" for="status">Concluído</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{% url 'tasks' %}" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </body>
+</html>
