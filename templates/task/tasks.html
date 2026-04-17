@@ -12,9 +12,12 @@
     </head>
     <body>
         <div class="container mt-5">
-            <h1 class="text-center">Bem-vindo à página de tarefas!</h1>
-            <p class="text-center">Aqui você pode gerenciar suas tarefas.</p>
-
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="btn btn-danger ">Sair</button>
+            </form>
+            <h1 class="text-center">Bem-vindo, {{ request.user.username }} à sua página de tarefas!</h1>
+            
             <table class="table mt-5">
             <thead>
                 <tr>
