@@ -45,6 +45,10 @@
             </tbody>
             </table>
             <a class="btn btn-success" href=" {% url 'create' %}">Nova Tarefa</a>
+            <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary">Sair</button>
+            </form>
 
         </div>
         

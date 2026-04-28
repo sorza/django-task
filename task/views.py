@@ -1,23 +1,24 @@
 from django.shortcuts import redirect, render
+from task.forms import TarefaForm
 from task.models import Tarefa
+from django.views.generic.list import ListView
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, 'task/index.html')
 
+@login_required
 def task_list(request):
     tarefas = Tarefa.objects.all() 
     return render(request, 'task/tasks.html', {'tarefas': tarefas})
 
 def create_task(request):
-    if request.method == 'POST': 
-        titulo = request.POST.get('titulo')
-        descricao = request.POST.get('descricao')
-        data = request.POST.get('data')
-        status = False
-        Tarefa.objects.create(titulo = titulo, descricao = descricao, data = data, status = status)
-        return redirect('tasks')
-    
-    return render(request, 'task/create_task.html')
+    form = TarefaForm(request.POST or None)
+    if request.method == 'POST':        
+        if form.is_valid():
+            form.save()
+            return redirect('tasks')
+    return render(request, 'task/create_task.html', {'form': form})
 
 def delete_task(request, id):
     tarefa = Tarefa.objects.get(id=id)
@@ -29,12 +30,10 @@ def delete_task(request, id):
 
 def update_task(request, id):
     tarefa = Tarefa.objects.get(id=id)
-    if request.method == 'POST':
-        tarefa.titulo = request.POST.get('titulo')
-        tarefa.descricao = request.POST.get('descricao')
-        tarefa.data = request.POST.get('data')
-        tarefa.status = 'status' in request.POST
-        tarefa.save()
-        return redirect('tasks')
+    form = TarefaForm(request.POST or None, instance=tarefa)
+    if request.method == 'POST':       
+        if form.is_valid():
+            form.save()
+            return redirect('tasks')
     
-    return render(request, 'task/update_task.html', {'task': tarefa})
+    return render(request, 'task/update_task.html', {'task': tarefa, 'form': form})

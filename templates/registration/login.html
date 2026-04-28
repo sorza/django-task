@@ -12,15 +12,15 @@
     </head>
     <body>             
         <div class="container">            
-            <form class="login-form" method="post" action="{% url 'tasks' %}">
+            <form class="login-form" method="post" action="{% url 'login' %}">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="usuario" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" id="usuario">                
+                    <label for="usuario" class="form-label">Usuario</label> 
+                    <input type="text" class="form-control" id="usuario" name="username">                
                 </div>
                 <div class="mb-3">
                     <label for="senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="senha">
+                    <input type="password" class="form-control" id="senha" name="password">
                 </div>
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="lembrar">
