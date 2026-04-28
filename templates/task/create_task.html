@@ -14,18 +14,31 @@
             {% csrf_token %}
             <div class="mb-3">
                 <label for="titulo" class="form-label">Titulo</label>
+<<<<<<< HEAD
                 <input type="text" class="form-control" id="titulo" name="titulo"> 
                 {{ form.titulo.errors }}              
+=======
+                <input type="text" class="form-control" id="titulo" name="titulo">   
+                {{ tarefa.titulo.errors }}            
+>>>>>>> ed35b3914545315358106ef9641a007de95ef879
             </div>
             <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição</label>
                 <input type="text" class="form-control" id="descricao" name="descricao">               
+<<<<<<< HEAD
                 {{ form.descricao.errors }}
+=======
+                {{ tarefa.descricao.errors }}
+>>>>>>> ed35b3914545315358106ef9641a007de95ef879
             </div>
             <div class="mb-3">
                 <label for="data" class="form-label">Data</label>
                 <input type="date" class="form-control" id="data" name="data">               
+<<<<<<< HEAD
                 {{ form.data.errors }}
+=======
+                {{ tarefa.data.errors }}
+>>>>>>> ed35b3914545315358106ef9641a007de95ef879
             </div>                 
             <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>
