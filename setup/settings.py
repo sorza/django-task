@@ -109,9 +109,5 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGOUT_REDIRECT_URL = 'login'
-<<<<<<< HEAD
-LOGIN_REDIRECT_URL = 'tasks'
-=======
 LOGIN_REDIRECT_URL = 'index'
 
->>>>>>> ed35b3914545315358106ef9641a007de95ef879
