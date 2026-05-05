@@ -1,35 +1,33 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from task.forms import TarefaForm
 from task.models import Tarefa
 from django.contrib.auth.decorators import login_required
 
 @login_required
 def task_list(request):
-    tarefas = Tarefa.objects.filter(usuario = request.user) 
-    #tarefas = request.user.tarefas.all()
+    tarefas = Tarefa.objects.all() 
     return render(request, 'task/tasks.html', {'tarefas': tarefas})
 
 @login_required
 def create_task(request):
     form = TarefaForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        tarefa = form.save(commit = False)
-        tarefa.usuario = request.user
-        tarefa.save()           
-        return redirect('index')    
+    if request.method == 'POST': 
+        if form.is_valid():
+            form.save()            
+        return redirect('tasks')    
     return render(request, 'task/create_task.html', {'tarefa':form})
 
 @login_required
 def delete_task(request, id):
-    tarefa = Tarefa.objects.get(id=id)
+    tarefa = get_object_or_404(Tarefa, id=id, usuario=request.user)
     if request.method == 'POST':
         tarefa.delete()
         return redirect('tasks')    
     return render(request, 'task/delete_task.html', {'task': tarefa})
 
 @login_required
-def update_task(request, id):
-    tarefa = Tarefa.objects.get(id=id)
+def update_task(request, id):   
+    tarefa = get_object_or_404(Tarefa, id=id, usuario=request.user)
     form = TarefaForm(request.POST or None, instance=tarefa)    
     if request.method == 'POST':
         if form.is_valid():

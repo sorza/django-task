@@ -15,6 +15,7 @@
 
             <form method="post" class="">
                 {% csrf_token %}
+
                 <div class="mb-3">
                     <label for="titulo" class="form-label">Título</label>
                     <input type="text" class="form-control" id="titulo" name="titulo" value="{{ task.titulo }}">
@@ -33,7 +34,7 @@
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="status" name="status" {% if task.status %}checked{% endif %}>
                     <label class="form-check-label" for="status">Concluído</label>
-                </div>
+                </div>              
                 <button type="submit" class="btn btn-primary">Salvar</button>
                 <a href="{% url 'index' %}" class="btn btn-secondary">Cancelar</a>
             </form>
